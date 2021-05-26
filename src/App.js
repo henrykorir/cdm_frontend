@@ -1,7 +1,8 @@
+import SearchBar from './components/SearchBar'
 function App() {
   return (
-    <div className="min-w-full min-h-screen flex items-center justify-center bg-gray-200">
-           <p>Hello</p>
+    <div className="min-w-screen min-h-screen flex items-center justify-center bg-gray-200">
+           <SearchBar />
      </div>
   );
 }
