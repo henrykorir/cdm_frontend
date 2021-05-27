@@ -8,18 +8,18 @@ const ReportTable = ({ data, isCriteria, onClickLink }) => {
 			<thead>
 				<tr>
 					{
-						headers.map(header => <th className="border"> { header } </th>)
+						headers.map((header, index) => <th className="border" key={"" + index}> { header } </th>)
 					}
 				</tr>
 			</thead>
 			<tbody>
 				{ 
-					data.map(row => 
-						<tr>
+					data.map((row, rowIndex) => 
+						<tr key={"" + rowIndex}>
 						{
-							Object.entries(row).map(entry =>{
+							Object.entries(row).map((entry, entryIndex) =>{
 								return isCriteria ===true && onClickLink !== null  && entry[1] > 0 ?
-									<td className="border">
+									<td className="border" key={"" + entryIndex + rowIndex + 1}>
 										<Link 
 											text={ entry[0] === 'Location' ? entry[1].split(' ').join('-') :  entry[1]} 
 											location={ row.Location }
@@ -28,7 +28,7 @@ const ReportTable = ({ data, isCriteria, onClickLink }) => {
 										/>
 									</td> 
 									: 
-									<td className="border"> { entry[0] === 'Location' ? entry[1].split(' ').join('-') :  entry[1] } </td>
+									<td className="border" key={"" + entryIndex + rowIndex + 1}> { entry[0] === 'Location' ? entry[1].split(' ').join('-') :  entry[1] } </td>
 							})
 						}
 						</tr>

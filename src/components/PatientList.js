@@ -15,7 +15,7 @@ const PatientList = () => {
 		if( patientRecord.length > 0 ) 
 			setState(patientRecord) 
 		else
-			setState(allPatients.rows)
+			if(allPatients !== null)setState(allPatients.rows)
 	},[patientRecord, allPatients])
 
 	return(

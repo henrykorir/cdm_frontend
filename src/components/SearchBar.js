@@ -1,18 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import InputField from './InputField'
-/*
-const initialState = null
-const reducer = (state, action) =>{
-	switch(action.type){
-		case 'SEARCH_PATIENT_BY_NAME':
-			return {
-				...state, rows:[...state.rows, action.payload]
-			}
-		default:
-			return state;
-	}
-}
-*/
+
 const SearchBar = ({ getPatient, setAllPatients }) => {
 	const [ patientsData, setPatientsData ] = useState(null)
 	const [ patientName, setPatientName ] = useState("")
@@ -26,18 +14,22 @@ const SearchBar = ({ getPatient, setAllPatients }) => {
 		.then( data => {console.log(data);setPatientsData(data); setAllPatients(data)})
 		.catch(error => console.error(error))
 	})
-	
+	// eslint-disable-next-line
 	useEffect(() => {
 		const searchPatientByName = ( name ) => {
+			// eslint-disable-next-line
 			if( patientsData ){
+				// eslint-disable-next-line
 				const { rows } = patientsData
 				const patientRecord = rows.filter( row => row['PatientName'] === patientName)
 				console.log(patientRecord)
+				// eslint-disable-next-line
 				getPatient(patientRecord)
 			}
 		}
+		// eslint-disable-next-line
 		searchPatientByName(patientName)
-	},[ patientName, patientsData, getPatient])
+	},[ patientName])
 	
 	return(
 		<div className="flex justify-center bg-green-200 py-4">
