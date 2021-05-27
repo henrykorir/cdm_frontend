@@ -14,7 +14,7 @@ const SearchBar = ({ getPatient, setAllPatients }) => {
 		.then( data => {console.log(data);setPatientsData(data); setAllPatients(data)})
 		.catch(error => console.error(error))
 	})
-	// eslint-disable-next-line
+
 	useEffect(() => {
 		const searchPatientByName = ( name ) => {
 			// eslint-disable-next-line

@@ -4,9 +4,9 @@ import CriteriaList from './CriteriaList'
 
 const Main = () => {
 	return(
-		<div>
-			<CriteriaList />
-		</div>
+	<>
+		<CriteriaList />
+	</>
 	)
 }
 export default Main
