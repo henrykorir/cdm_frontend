@@ -14,7 +14,7 @@ const Link = ({ text, location, criteria, onClickLink }) => {
 		else
 			url = url + '/both/'
 		url = url + '?location=' + locationName
-		console.log(url)
+	
 		fetch(url)
 		.then( result => result.json())
 		.then( data => onClickLink(data))

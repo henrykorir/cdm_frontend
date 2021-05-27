@@ -1,10 +1,10 @@
 import React from 'react' 
-import SearchBar from './SearchBar'
+import PatientList from './PatientList'
 
-const Main = ({ children }) => {
+const Main = () => {
 	return(
 		<div>
-			<SearchBar />
+			<PatientList />
 		</div>
 	)
 }

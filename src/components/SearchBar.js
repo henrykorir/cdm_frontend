@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useReducer } from 'react'
+import React, { useState, useEffect } from 'react'
 import InputField from './InputField'
+/*
 const initialState = null
 const reducer = (state, action) =>{
 	switch(action.type){
@@ -11,35 +12,35 @@ const reducer = (state, action) =>{
 			return state;
 	}
 }
-const SearchBar = ( props ) => {
-	//const [ onShowPatient ] = props
+*/
+const SearchBar = ({ getPatient, setAllPatients }) => {
+	const [ patientsData, setPatientsData ] = useState(null)
 	const [ patientName, setPatientName ] = useState("")
-	const [ patientData, setPatientData ] = useState(null)
 	
 	const getPatientName = ( name ) => {
 		setPatientName(name)
 	}
-	
-	
 	useEffect(() => {
 		fetch('https://ampath.herokuapp.com/patients')
 		.then( result => result.json())
-		.then( data => setPatientData(data))
+		.then( data => {console.log(data);setPatientsData(data); setAllPatients(data)})
 		.catch(error => console.error(error))
 	})
 	
 	useEffect(() => {
 		const searchPatientByName = ( name ) => {
-			if(patientData){
-				const { rows } = patientData
-				console.log( rows.filter( row => row['PatientName'] === patientName))
+			if( patientsData ){
+				const { rows } = patientsData
+				const patientRecord = rows.filter( row => row['PatientName'] === patientName)
+				console.log(patientRecord)
+				getPatient(patientRecord)
 			}
 		}
 		searchPatientByName(patientName)
-	},[ patientName ])
+	},[ patientName, patientsData, getPatient])
 	
 	return(
-		<div className="flex items-center justify-center">
+		<div className="flex justify-center bg-green-200 py-4">
 			<InputField onGetPatientName = { getPatientName }/>
 		</div>
 	)
