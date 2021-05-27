@@ -25,7 +25,7 @@ const PatientList = () => {
 			{
 			
 				state.length > 0 ? 
-					<ReportTable data = { state } isCriteria={ false } onClickLink={ null } />
+					<ReportTable title={"Patients Record"} data = { state } isCriteria={ false } onClickLink={ null } />
 				:
 				null
 			}

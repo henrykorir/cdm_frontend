@@ -1,11 +1,12 @@
 import React from 'react' 
-//import PatientList from './PatientList'
+import PatientList from './PatientList'
 import CriteriaList from './CriteriaList'
 
-const Main = () => {
+const Main = ({ state }) => {
+	const component = state === 1 ? <CriteriaList /> : <PatientList />
 	return(
 	<>
-		<CriteriaList />
+	{ component }
 	</>
 	)
 }

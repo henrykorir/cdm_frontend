@@ -23,6 +23,7 @@ const CriteriaList = () => {
 				criteriaData !== null ? 
 				(
 					<ReportTable 
+						title={"Cronic Disease Criteria Summary"}
 						data={ criteriaData.rows } 
 						isCriteria={ true } 
 						onClickLink={ handleLinkClick } 
@@ -34,6 +35,7 @@ const CriteriaList = () => {
 			:
 			(
 				<ReportTable 
+					title={"Category Report"}
 					data={ summary } 
 					isCriteria={ false } 
 					onClickLink={ null } 
