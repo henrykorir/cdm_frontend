@@ -18,8 +18,16 @@ const ReportTable = ({ data, isCriteria, onClickLink }) => {
 						<tr>
 						{
 							Object.entries(row).map(entry =>{
-								return isCriteria ?
-									<td><Link text={ entry[1] } onClickLink = { onClickLink } /></td> : 
+								return isCriteria ===true && onClickLink !== null  && entry[1] > 0 ?
+									<td>
+										<Link 
+											text={ entry[1] } 
+											location={ row.Location }
+											criteria={ entry[0] }
+											onClickLink = { onClickLink } 
+										/>
+									</td> 
+									: 
 									<td className="border"> { entry[1] } </td>
 							})
 						}
