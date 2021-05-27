@@ -4,7 +4,7 @@ import Link from './Link'
 const ReportTable = ({ data, isCriteria, onClickLink }) => {
 	const headers = Object.keys(data[0])
 	return(
-		<table className="table-auto text-left border-collapse border border-green-800 ">
+		<table className="table-auto text-left border-collapse border">
 			<thead>
 				<tr>
 					{
@@ -19,7 +19,7 @@ const ReportTable = ({ data, isCriteria, onClickLink }) => {
 						{
 							Object.entries(row).map(entry =>{
 								return isCriteria ===true && onClickLink !== null  && entry[1] > 0 ?
-									<td>
+									<td className="border">
 										<Link 
 											text={ entry[1] } 
 											location={ row.Location }

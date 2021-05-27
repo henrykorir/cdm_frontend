@@ -1,7 +1,15 @@
 import React, { useState, useEffect, useReducer } from 'react'
 import InputField from './InputField'
 const initialState = null
-const reducer = (action, state) => {
+const reducer = (state, action) =>{
+	switch(action.type){
+		case 'SEARCH_PATIENT_BY_NAME':
+			return {
+				...state, rows:[...state.rows, action.payload]
+			}
+		default:
+			return state;
+	}
 }
 const SearchBar = ( props ) => {
 	//const [ onShowPatient ] = props

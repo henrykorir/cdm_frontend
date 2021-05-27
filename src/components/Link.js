@@ -23,8 +23,9 @@ const Link = ({ text, location, criteria, onClickLink }) => {
 	return(
 		<>
 			<a 
+				className="w-full h-full text-blue-600 inline-block"
 				href="/" 
-				onClick = {(e) => { e.preventDefault();handleClick(location, criteria) }} 
+				onClick = {(e) => { e.preventDefault();handleClick(location, criteria) }}
 			>
 			{ text }
 			</a>
