@@ -29,7 +29,7 @@ const SearchBar = ( props ) => {
 	},[ patientName ])
 	
 	return(
-		<div>
+		<div className="flex items-center justify-center">
 			<InputField onGetPatientName = { getPatientName }/>
 		</div>
 	)

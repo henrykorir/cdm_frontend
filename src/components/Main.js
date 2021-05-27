@@ -4,7 +4,7 @@ import SearchBar from './SearchBar'
 const Main = ({ children }) => {
 	return(
 		<div>
-		 <SearchBar />
+			<SearchBar />
 		</div>
 	)
 }
