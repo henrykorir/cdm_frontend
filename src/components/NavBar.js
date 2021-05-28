@@ -1,9 +1,9 @@
 import React from 'react'
 import {
-  BrowserRouter as Router
+  BrowserRouter as Router,
   //Switch,
   //Route,
- // Link
+	Link
 } from "react-router-dom";
  const NavBar = (props) => {
 	 const { onChangeState } = props
