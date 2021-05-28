@@ -29,7 +29,7 @@ const PatientList = () => {
 	},[] )
 	
 	return(
-		<>
+		<div >
 			<SearchBar 
 				text={ patientName } 
 				onChange={ updateInput} 
@@ -38,14 +38,14 @@ const PatientList = () => {
 				patientRecord.length > 0 ?
 					<ReportTable 
 						title={"Patients Record"} 
-						data = { patientName !== "" > 0 ? patientRecord : patientsData.rows} 
+						data = { patientName !== "" ? patientRecord : patientsData.rows} 
 						isCriteria={ false } 
 						onClickLink={ null } 
 					/>
 				:
 					<div>{"Loading ..."}</div>
 				}
-		</>
+		</div>
 	)
 }
 export default PatientList
