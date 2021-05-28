@@ -1,8 +1,8 @@
 import React from 'react' 
 
 const Link = ({ text, location, criteria, onClickLink }) => {
+	let url = 'https://ampath.herokuapp.com/patients'
 	const handleClick = ( locationName, criteriaType ) => {
-		let url = 'https://ampath.herokuapp.com/patients'
 		if(criteriaType === 'New Hypertensive')
 			url = url + '/hypertensive/new/'
 		else if(criteriaType === 'Known Hypertensive')
@@ -24,7 +24,7 @@ const Link = ({ text, location, criteria, onClickLink }) => {
 		<>
 			<a 
 				className="w-full h-full text-blue-600 inline-block"
-				href="/" 
+				href={ url.substring(28) } 
 				onClick = {(e) => { e.preventDefault();handleClick(location, criteria) }}
 			>
 			{ text }

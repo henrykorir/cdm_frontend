@@ -9,24 +9,20 @@ const SearchBar = ({ getPatient, setAllPatients }) => {
 		setPatientName(name)
 	}
 	
-	const searchPatientByName = ( name, data ) => {
-		// eslint-disable-next-line
-		if( data ){
-			// eslint-disable-next-line
-			const { rows } = data
-			const patientRecord = rows.filter( row => row['PatientName'] === patientName)
-			// eslint-disable-next-line
-			getPatient(patientRecord)
-		}
-	}
 	
 	const patients = useMemo(() =>{
 		return   patientsData
 	},[patientsData])
 	
 	const memoizedFindPatient = useCallback(() =>{
-		searchPatientByName(patientName, patients)
-	},[searchPatientByName, patientName,  patients])
+		//const searchPatientByName = ( name, data ) => {
+			if( patients ){
+				const { rows } = patients
+				const patientRecord = rows.filter( row => row['PatientName'] === patientName)
+				getPatient(patientRecord)
+			}
+		//}
+	},[getPatient, patientName,  patients])
 	
 	console.log(patients)
 	useEffect(() => {
