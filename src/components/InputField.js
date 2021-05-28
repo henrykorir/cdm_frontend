@@ -1,15 +1,15 @@
-import { useState } from 'react'
+import React from 'react'
 
-const InputField = ({ onGetPatientName }) => {
-	const [value, setValue] = useState("")
-	
-	const handleOnChange = ( event ) => {
-		setValue(event.target.value)
-		onGetPatientName(event.target.value)
-	}
-	
+const InputField = ({ keyword, setKeyword }) => {
 	return(
-		<input className="w-6/12 h-8 text-center" type="text" value={ value } onChange={ handleOnChange } placeholder="Enter patient name..."/>
+		<input 
+			className="w-6/12 h-8 text-center" 
+			key={ "random1" }
+			type={"text"} 
+			value={ keyword } 
+			onChange={ e => setKeyword(e.target.value) } 
+			placeholder="Enter patient name..."
+		/>
 	)
 }
 export default InputField

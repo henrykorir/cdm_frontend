@@ -2,19 +2,19 @@ import React from 'react'
 
 const Link = ({ text, location, criteria, onClickLink }) => {
 	let url = 'https://ampath.herokuapp.com/patients'
-	const handleClick = ( locationName, criteriaType ) => {
-		if(criteriaType === 'New Hypertensive')
-			url = url + '/hypertensive/new/'
-		else if(criteriaType === 'Known Hypertensive')
-			url = url + '/hypertensive/known/'
-		else if(criteriaType === 'New Diabetic')
-			url = url + '/diabetic/new/'
-		else if(criteriaType === 'Known Diabetic')
-			url = url + '/diabetic/known/'
-		else
-			url = url + '/both/'
-		url = url + '?location=' + locationName
-	
+	if(criteria === 'New Hypertensive')
+		url = url + '/hypertensive/new/'
+	else if(criteria === 'Known Hypertensive')
+		url = url + '/hypertensive/known/'
+	else if(criteria === 'New Diabetic')
+		url = url + '/diabetic/new/'
+	else if(criteria === 'Known Diabetic')
+		url = url + '/diabetic/known/'
+	else
+		url = url + '/both/'
+	url = url + '?location=' + location
+	const handleClick = ( event, url ) => {
+		event.preventDefault()
 		fetch(url)
 		.then( result => result.json())
 		.then( data => onClickLink(data))
@@ -25,7 +25,7 @@ const Link = ({ text, location, criteria, onClickLink }) => {
 			<a 
 				className="w-full h-full text-blue-600 inline-block"
 				href={ url.substring(28) } 
-				onClick = {(e) => { e.preventDefault();handleClick(location, criteria) }}
+				onClick = { handleClick }
 			>
 			{ text }
 			</a>

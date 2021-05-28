@@ -1,7 +1,7 @@
 import React from 'react'
  const NavBar = (props) => {
 	 const { onChangeState } = props
-	 console.log(props)
+	
 	 const handleClick = (value) => {
 		onChangeState(value)
 		console.log(value)

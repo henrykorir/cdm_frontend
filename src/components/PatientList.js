@@ -3,32 +3,46 @@ import SearchBar from './SearchBar'
 import ReportTable from './ReportTable'
 
 const PatientList = () => {
+	const [ patientsData, setPatientsData ] = useState({status:200,rows:[],message:"User lists retrieved successfully"})
 	const [ patientRecord, setPatientRecord ] = useState([])
-	const [ state, setState ] = useState([])
-	const [ allPatients, setAllPatients ] = useState(null)
+	const [ patientName, setPatientName ] = useState("")
 	
-	const getPatient =  record  => {
-		setPatientRecord(record)
+	
+	const fetchPatients = async () => {
+		return await fetch('https://ampath.herokuapp.com/patients')
+			.then( result => result.json())
+			.then( data => {
+				setPatientsData(data); 
+				setPatientRecord(data.rows)
+			})
+			.catch(error => console.error(error))
 	}
 	
-	useEffect(() => {
-		if( patientRecord.length > 0 ) 
-			setState(patientRecord) 
-		else
-			if(allPatients !== null)
-				setState(allPatients.rows)
-	},[patientRecord, allPatients])
-
+	const updateInput = async (patientName) => {
+		const { rows } = patientsData
+		const filteredRecord = rows.filter( row => row['PatientName'] === patientName)
+		setPatientName(patientName);
+		setPatientRecord(filteredRecord);
+	}
+	useEffect( () => { fetchPatients()},[] )
+	
 	return(
 		<>
-			<SearchBar getPatient={ getPatient } setAllPatients={ setAllPatients} /> 
+			<SearchBar 
+				text={ patientName } 
+				onChange={ updateInput} 
+			/> 
 			{
-			
-				state.length > 0 ? 
-					<ReportTable title={"Patients Record"} data = { state } isCriteria={ false } onClickLink={ null } />
+				patientRecord.length > 0 ?
+					<ReportTable 
+						title={"Patients Record"} 
+						data = { patientRecord.length > 0 ? patientRecord : patientsData.rows} 
+						isCriteria={ false } 
+						onClickLink={ null } 
+					/>
 				:
-				null
-			}
+					null
+				}
 		</>
 	)
 }
