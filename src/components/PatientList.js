@@ -38,7 +38,7 @@ const PatientList = () => {
 				patientRecord.length > 0 ?
 					<ReportTable 
 						title={"Patients Record"} 
-						data = { patientName !== "" ? patientRecord : patientsData.rows} 
+						data = { patientRecord } 
 						isCriteria={ false } 
 						onClickLink={ null } 
 					/>
