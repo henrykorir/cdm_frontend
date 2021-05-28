@@ -4,10 +4,8 @@ import ReportTable from './ReportTable'
 const CriteriaList = () => {
 	const [ criteriaData, setCriteriaData] = useState(null)
 	const [ summary, setSummary] = useState([])
-	const handleLinkClick = (data) => {
-		console.log(data)
-		setSummary(data.rows)
-	}
+	
+	const handleLinkClick = (data) => setSummary(data.rows)
 	
 	useEffect(() =>{
 		fetch('https://ampath.herokuapp.com')
@@ -30,7 +28,7 @@ const CriteriaList = () => {
 					/> 
 				)
 				:
-				null
+				<div>Loading...</div>
 			)
 			:
 			(
@@ -42,6 +40,7 @@ const CriteriaList = () => {
 				/>
 			)
 		}
+		
 		</>
 	)
 }

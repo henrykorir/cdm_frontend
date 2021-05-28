@@ -24,7 +24,9 @@ const PatientList = () => {
 		setPatientName(patientName);
 		setPatientRecord(filteredRecord);
 	}
-	useEffect( () => { fetchPatients()},[] )
+	useEffect( () => { 
+		fetchPatients()
+	},[] )
 	
 	return(
 		<>
@@ -41,7 +43,7 @@ const PatientList = () => {
 						onClickLink={ null } 
 					/>
 				:
-					null
+					<div>Loading ...</div>
 				}
 		</>
 	)
