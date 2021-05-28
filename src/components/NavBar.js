@@ -6,7 +6,7 @@ import React from 'react'
 		onChangeState(value)
 	 }
 	 return(
-		<div className="w-full text-center flex justify-center flex-col bg-green-200 pl-1 py-2">
+		<div style={{"border-bottom": ".5px solid grey"}} className="w-full text-center flex justify-center flex-col bg-green-200 pl-1 py-2">
 			<ul className="flex space-x-4 content-around text-center items-center text-blue-800">
 				<li className="cursor-pointer"><a href="/criteria" onClick={(e) => {e.preventDefault(); handleClick(1)}}>criteria</a></li>
 				<li className="cursor-pointer"><a href="/patients" onClick={(e) => {e.preventDefault(); handleClick(2)}}>patients</a></li>

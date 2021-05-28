@@ -19,15 +19,15 @@ const PatientList = () => {
 	}
 	
 	const updateInput = async (patientName) => {
-		const { rows } = patientsData
-		const filteredRecord = rows.filter( row => row['PatientName'] === patientName)
-		setPatientName(patientName);
-		filteredRecord.length > 0 ? setPatientRecord(filteredRecord) : setPatientRecord(rows);
+			const { rows } = patientsData
+			const filteredRecord = rows.filter( row => row['PatientName'] === patientName)
+			setPatientName(patientName);
+			setPatientRecord(filteredRecord)
 	}
 	useEffect( () => { 
 		fetchPatients()
 	},[] )
-	
+	console.log(patientName.length);
 	return(
 		<div >
 			<SearchBar 
