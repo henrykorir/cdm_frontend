@@ -22,7 +22,7 @@ const PatientList = () => {
 		const { rows } = patientsData
 		const filteredRecord = rows.filter( row => row['PatientName'] === patientName)
 		setPatientName(patientName);
-		setPatientRecord(filteredRecord);
+		filteredRecord.length > 0 ? setPatientRecord(filteredRecord) : setPatientRecord(rows);
 	}
 	useEffect( () => { 
 		fetchPatients()
