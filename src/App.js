@@ -8,7 +8,7 @@ const App = () => {
 		setState(value)
 	}
 	return (
-		<div className="min-w-11/12 min-h-screen items-center justify-center top-0">
+		<div className=" min-w-11/12 min-h-screen items-center justify-center top-0">
 			<NavBar onChangeState = { changeState }/>
 			<Main state ={ state }/>
 		</div>

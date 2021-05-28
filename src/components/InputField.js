@@ -8,7 +8,7 @@ const InputField = ({ keyword, setKeyword }) => {
 			type={"text"} 
 			value={ keyword } 
 			onChange={ e => setKeyword(e.target.value) } 
-			placeholder="Enter patient name..."
+			placeholder="Enter patient name to search ..."
 		/>
 	)
 }

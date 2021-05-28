@@ -4,8 +4,8 @@ import Link from './Link'
 const ReportTable = ({ title, data, isCriteria, onClickLink }) => {
 	const headers = Object.keys(data[0]) 
 	return(
-		<div>
-			<h1 className="w-full text-center text-white font-bold bg-black">{title}</h1>
+		<div >
+			<h1 className=" w-full text-center text-white font-bold bg-black">{title}</h1>
 			<table className="table-auto text-left border-collapse w-full border">
 				<thead>
 					<tr>
