@@ -12,7 +12,7 @@ import {
 		onChangeState(value)
 	 }
 	 return(
-		<Router
+		<Router>
 			<div style={{"borderBottom": ".5px solid grey"}} className="w-full text-center flex justify-center flex-col bg-green-200 pl-1 py-2">
 				<ul className="flex space-x-4 content-around text-center items-center text-blue-800">
 					<li className="cursor-pointer">
