@@ -27,7 +27,6 @@ const PatientList = () => {
 	useEffect( () => { 
 		fetchPatients()
 	},[] )
-	console.log(patientName.length);
 	return(
 		<div >
 			<SearchBar 
