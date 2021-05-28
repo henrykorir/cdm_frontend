@@ -13,9 +13,8 @@ const Link = ({ text, location, criteria, onClickLink }) => {
 	else
 		url = url + '/both/'
 	url = url + '?location=' + location
-	const handleClick = ( event, url ) => {
-		event.preventDefault()
-		fetch(url)
+	const handleClick = ( link ) => {
+		fetch(link)
 		.then( result => result.json())
 		.then( data => onClickLink(data))
 		.catch(error => console.error(error))
@@ -25,7 +24,7 @@ const Link = ({ text, location, criteria, onClickLink }) => {
 			<a 
 				className="w-full h-full text-blue-600 inline-block"
 				href={ url.substring(28) } 
-				onClick = { handleClick }
+				onClick = { e => {e.preventDefault(); handleClick(url)} }
 			>
 			{ text }
 			</a>

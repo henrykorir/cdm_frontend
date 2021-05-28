@@ -8,7 +8,7 @@ const CriteriaList = () => {
 		console.log(data)
 		setSummary(data.rows)
 	}
-	// eslint-disable-next-line
+	
 	useEffect(() =>{
 		fetch('https://ampath.herokuapp.com')
 		.then( result => result.json())
