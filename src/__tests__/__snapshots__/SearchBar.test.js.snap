@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchBar should render correctly 1`] = `"<div class=\\"flex justify-center bg-gray-800 py-4\\"><input class=\\"border-2 focus:border-blue-500 hover:border-blue-500 w-6/12 h-8 text-center\\" type=\\"text\\" placeholder=\\"Enter patient name to search ...\\" value=\\"\\"></div>"`;

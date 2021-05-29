@@ -17,10 +17,18 @@ afterEach(() => {
   container.remove();
   container = null;
 });
-
-it('it renders',() =>{
-	act(() =>{
-		render(<InputField />, container);
-	})
-	expect(container.textContent).toBe("");
+describe('InputField', () => {
+	it('it renders correctly',() =>{
+		act(() =>{
+			render(<InputField />, container);
+		})
+		expect(container.querySelector('input').value).toBe("");
+	});
+	it('takes in text', () => {
+		const spy = jest.fn(input => 'p');
+		act(() => {
+			render(<InputField keyword ={'p'} onChange={ spy } />, container)
+		});
+		expect(container.querySelector('input').value).toBe('p');
+	});
 })
