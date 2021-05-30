@@ -6,7 +6,7 @@ const SearchBar = ({ text, onChange }) => {
 		<div className="flex justify-center bg-gray-800 py-4">
 			<InputField 
 				keyword={ text }
-				setKeyword = { onChange }
+				setKeyword ={ onChange }
 			/>
 		</div>
 	)

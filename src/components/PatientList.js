@@ -31,7 +31,7 @@ const PatientList = () => {
 		<div >
 			<SearchBar 
 				text={ patientName } 
-				onChange={ updateInput} 
+				onChange={ updateInput } 
 			/> 
 			{
 				patientRecord.length > 0 ?
