@@ -16,10 +16,7 @@ const Link = ({ text, location, criteria, onClickLink }) => {
 	const handleClick = ( link ) => {
 		fetch(link)
 		.then( result => result.json())
-		.then( data => {
-			console.log(data)
-			onClickLink(data)
-		})
+		.then( data => onClickLink(data))
 		.catch(error => console.error(error))
 	}
 	return(
