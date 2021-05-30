@@ -18,9 +18,11 @@ afterEach(() => {
   container = null;
 }); 
 
-it('it renders',() =>{
-	act(() =>{
-		render(<PatientList />, container);
-	})
-	expect(container.textContent).toBe("Loading ...");
-})
+describe('PatientList', () => {
+	it('shows \'loading ...\' at first ',() =>{
+		act(() =>{
+			render(<PatientList />, container);
+		})
+		expect(container.textContent).toBe("Loading ...");
+	});
+});
