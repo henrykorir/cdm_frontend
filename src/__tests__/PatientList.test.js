@@ -22,5 +22,5 @@ it('it renders',() =>{
 	act(() =>{
 		render(<PatientList />, container);
 	})
-	expect(container.textContent).toBe("");
+	expect(container.textContent).toBe("Loading ...");
 })

@@ -1,6 +1,6 @@
 import React from "react";
 import { render, unmountComponentAtNode } from "react-dom";
-import { act } from "react-dom/test-utils";
+import { act, Simulate } from "react-dom/test-utils";
 
 import InputField from '../components/InputField'
 
@@ -18,17 +18,39 @@ afterEach(() => {
   container = null;
 });
 describe('InputField', () => {
-	it('it renders correctly',() =>{
+	const onChange = jest.fn(str => str)
+	it('renders correctly',() =>{
 		act(() =>{
 			render(<InputField />, container);
 		})
-		expect(container.querySelector('input').value).toBe("");
+		expect(container.querySelector('input').value).toBe('');
 	});
-	it('takes in text', () => {
-		const spy = jest.fn(input => 'p');
+	
+	it('renders a text', () => {
 		act(() => {
-			render(<InputField keyword ={'p'} onChange={ spy } />, container)
+			render(<InputField keyword ={'p'} setKeyword={ onChange } />, container);
 		});
-		expect(container.querySelector('input').value).toBe('p');
+		
+		expect(container.querySelector('input').value).toBe("p");
 	});
+	it('should change the value of input field', () => {
+		
+		act(() => {
+			render(<InputField keyword ={'p'} setKeyword={ onChange } />, container);
+			container.querySelector('input').value ='a'
+			Simulate.change(container.querySelector('input'))
+		});
+		
+		expect(onChange).toHaveBeenCalledWith('a');
+		expect(onChange).toHaveBeenCalledTimes(1);
+		act(() => {
+			const string = 'patient 6'
+			for(let ch of [...string]){
+				console.log(ch)
+				container.querySelector('input').value = ch;
+				Simulate.change(container.querySelector('input'));
+			};
+		});
+		expect(onChange).toHaveBeenCalledTimes('patient 6'.length + 1)
+	})
 })
