@@ -18,41 +18,52 @@ afterEach(() => {
   container = null;
 }); 
 describe('Link',() => {
-	it('renders an anchor successfully',() =>{
-		act(() =>{
-			render(<Link />, container);
-		})
-		expect(container.textContent).toBe("");
-	});
-	it('renders with a provided text as label', () => {
-		act(()=>{
-			render(<Link text='anchor' />, container)
+	describe('with basic render props', () => {
+		it('renders an anchor successfully',() =>{
+			act(() =>{
+				render(<Link />, container);
+			})
+			expect(container.textContent).toBe("");
 		});
-		expect(container.querySelector('a').textContent).toBe('anchor')
-	});
-	it('renders with a provided text as label', () => {
+		it('renders with a provided text as label', () => {
+			act(()=>{
+				render(<Link text='anchor' />, container)
+			});
+			expect(container.querySelector('a').textContent).toBe('anchor')
+		});
+	})
+	describe('that',() => {
+	it('responds to clicks', () => {
 		const data = {
-				'name':'patient 59',
-				'Encounter Date': '2021-5-31',
-				'Location': 'Location-8',
-				'Known Diabetic': 'New',
-				'Gender': 'M',
-				'Age': 3
+				Age: 3,
+				'Encounter Date': "2021-05-05T00:00:00.000Z",
+				Gender: "M",
+				'Known Diabetic': "New",
+				Location: "Location 3",
+				name: "patient 51"
 		}
-		const spyOnClick = jest.fn().mockImplementationOnce(() => data);			
+		const href = 'https://ampath.netlify.app/patients/diabetic/known/?location=Location 3'
+		const spyOnClick = jest
+		.fn()
+		.mockImplementationOnce(() => data);			
 		act(()=>{
 			render(
 				<Link 
-					text='anchor' 
-					location={8}
+					text={'1'}
+					location={'Location 3'}
 					criteria={'New Diabetic'} 
-					onClickLink={spyOnClick}
+					onClickLink={ spyOnClick }
 				/>,
 				container
 			)
-			//container.querySelectorAll('a')[0].dispatchEvent(new MouseEvent("click", { bubbles: true }));
-			Simulate.click(container.querySelector('a'))
+			let anchor = container.querySelector('a')
+			anchor.setAttribute('href', href)
+			//anchor.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+			Simulate.click(anchor)
 		});
+		expect(container.querySelector('a')).toBeDefined()
 		expect(spyOnClick).toHaveBeenCalledTimes(1)
 	});
 });
+});
+
