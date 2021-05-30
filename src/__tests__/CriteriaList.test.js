@@ -18,9 +18,9 @@ afterEach(() => {
   container = null;
 }); 
 
-it('it renders',() =>{
+it('renders \"Loading ...\"',() =>{
 	act(() =>{
 		render(<CriteriaList />, container);
 	})
-	expect(container.textContent).toBe("");
+	expect(container.textContent).toBe("Loading...");
 })
