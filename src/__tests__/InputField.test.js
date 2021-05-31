@@ -40,13 +40,12 @@ describe('InputField', () => {
 			container.querySelector('input').value ='a'
 			Simulate.change(container.querySelector('input'))
 		});
-		
+
 		expect(onChange).toHaveBeenCalledWith('a');
 		expect(onChange).toHaveBeenCalledTimes(1);
 		act(() => {
 			const string = 'patient 6'
 			for(let ch of [...string]){
-				console.log(ch)
 				container.querySelector('input').value = ch;
 				Simulate.change(container.querySelector('input'));
 			};

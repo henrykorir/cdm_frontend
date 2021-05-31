@@ -14,12 +14,12 @@ const Link = ({ text, location, criteria, onClickLink }) => {
 		url = url + '/both/'
 	url = url + '?location=' + location
 	const handleClick = (link ) => {
+		console.log("onClickLink: ",onClickLink.getMockName())
 		fetch(link)
 		.then( result => result.json())
 		.then( data => onClickLink(data))
 		.catch(error => console.error(error))
 	}
-	console.log(text, location, criteria, onClickLink)
 	return(
 		<>
 			<a 

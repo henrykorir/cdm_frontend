@@ -1,6 +1,6 @@
 import React from "react";
 import { render, unmountComponentAtNode } from "react-dom";
-import { act, Simulate } from "react-dom/test-utils";
+import { act, renderIntoDocument, Simulate } from "react-dom/test-utils";
 
 import Link from '../components/Link'
 
@@ -33,7 +33,6 @@ describe('Link',() => {
 		});
 	})
 	describe('that',() => {
-	it('responds to clicks', () => {
 		const data = {
 				Age: 3,
 				'Encounter Date': "2021-05-05T00:00:00.000Z",
@@ -42,30 +41,27 @@ describe('Link',() => {
 				Location: "Location 3",
 				name: "patient 51"
 		}
-		const href = 'https://ampath.netlify.app/patients/diabetic/known/?location=Location 3'
-		const spyOnClick = jest
-		.fn()
-		.mockImplementationOnce(() => data);
+		const spyOnClick = jest.fn().mockImplementationOnce(() => data);
 
-		act(()=>{
-			render(
-				<Link 
-					text={'1'}
-					location={'Location 3'}
-					criteria={'New Diabetic'} 
-					onClickLink = { spyOnClick }
-				/>,
-				container
-			)
-			let anchor = container.querySelector('a')
-			anchor.setAttribute('href', href)
-			//anchor.dispatchEvent(new MouseEvent("click", { bubbles: true }));
-			Simulate.click(anchor)
+		it('responds to clicks', () => {
+			act(()=>{
+				render(
+					<Link 
+						text={'1'}
+						location={'Location 3'}
+						criteria={'New Diabetic'} 
+						onClickLink = { spyOnClick }
+					/>,
+					container
+				)
+				//container.querySelector("a").dispatchEvent(new MouseEvent("click", { bubbles: true }));
+				Simulate.click(container.querySelector('a'));
+			});
+			expect(container.querySelector('a')).toBeDefined()
+			expect(container.querySelector('a').getAttribute('href')).not.toBeNull()
+			//expect(container.querySelector('a').getAttribute('onclick')).not.toBeNull()
+			expect(spyOnClick).toHaveBeenCalledTimes(1)
 		});
-		expect(container.querySelector('a')).toBeDefined()
-		expect(container.querySelector('a').getAttribute('onClick')).toBeNull()
-		expect(spyOnClick).toHaveBeenCalledTimes(10)
-	});
 });
 });
 
