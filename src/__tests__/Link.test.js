@@ -45,14 +45,15 @@ describe('Link',() => {
 		const href = 'https://ampath.netlify.app/patients/diabetic/known/?location=Location 3'
 		const spyOnClick = jest
 		.fn()
-		.mockImplementationOnce(() => data);			
+		.mockImplementationOnce(() => data);
+
 		act(()=>{
 			render(
 				<Link 
 					text={'1'}
 					location={'Location 3'}
 					criteria={'New Diabetic'} 
-					onClickLink={ spyOnClick }
+					onClickLink = { spyOnClick }
 				/>,
 				container
 			)
@@ -62,7 +63,8 @@ describe('Link',() => {
 			Simulate.click(anchor)
 		});
 		expect(container.querySelector('a')).toBeDefined()
-		expect(spyOnClick).toHaveBeenCalledTimes(1)
+		expect(container.querySelector('a').getAttribute('onClick')).toBeNull()
+		expect(spyOnClick).toHaveBeenCalledTimes(10)
 	});
 });
 });

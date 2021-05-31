@@ -13,7 +13,6 @@ const CriteriaList = () => {
 		.then( data => setCriteriaData(data))
 		.catch( error => console.error(error))
 	},[])
-	console.log(criteriaData)
 	return(
 		<>
 		{

@@ -13,18 +13,24 @@ const Link = ({ text, location, criteria, onClickLink }) => {
 	else
 		url = url + '/both/'
 	url = url + '?location=' + location
-	const handleClick = ( link ) => {
+	const handleClick = (link ) => {
 		fetch(link)
 		.then( result => result.json())
 		.then( data => onClickLink(data))
 		.catch(error => console.error(error))
 	}
+	console.log(text, location, criteria, onClickLink)
 	return(
 		<>
 			<a 
 				className="w-full h-full text-blue-600 inline-block"
 				href={ url.substring(28) } 
-				onClick = { e => {e.preventDefault(); handleClick(url)} }
+				onClick = { 
+					event => { 
+						event.preventDefault();
+						handleClick(url) 
+					}
+				}
 			>
 			{ text }
 			</a>
