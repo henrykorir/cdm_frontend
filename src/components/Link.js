@@ -19,11 +19,7 @@ const Link = ({ text, location, criteria, onClickLink }) => {
 		try{
 			const response = await fetch(link)
 			const data = await response.json()
-			if(data !== null){
-				console.log(data)
-				onClickLink(data)
-			}
-				console.log(data)
+			onClickLink(data)
 		}catch(error){
 			console.log(error)
 		}
