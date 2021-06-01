@@ -13,13 +13,14 @@ const Link = ({ text, location, criteria, onClickLink }) => {
 	else
 		url = url + '/both/'
 	url = url + '?location=' + location
-	const handleClick = (link ) => {
-		console.log("onClickLink: ",onClickLink.getMockName())
+	
+	const handleClick = async (link ) => {
 		fetch(link)
 		.then( result => result.json())
 		.then( data => onClickLink(data))
 		.catch(error => console.error(error))
 	}
+
 	return(
 		<>
 			<a 
