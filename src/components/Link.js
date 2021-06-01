@@ -1,5 +1,6 @@
 import React from 'react' 
 
+
 const Link = ({ text, location, criteria, onClickLink }) => {
 	let url = 'https://ampath.herokuapp.com/patients'
 	if(criteria === 'New Hypertensive')
@@ -15,10 +16,17 @@ const Link = ({ text, location, criteria, onClickLink }) => {
 	url = url + '?location=' + location
 	
 	const handleClick = async (link ) => {
-		fetch(link)
-		.then( result => result.json())
-		.then( data => onClickLink(data))
-		.catch(error => console.error(error))
+		try{
+			const response = await fetch(link)
+			const data = await response.json()
+			if(data !== null){
+				console.log(data)
+				onClickLink(data)
+			}
+				console.log(data)
+		}catch(error){
+			console.log(error)
+		}
 	}
 
 	return(
