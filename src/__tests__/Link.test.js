@@ -2,13 +2,13 @@ import React from "react";
 import { render, unmountComponentAtNode } from "react-dom";
 import { act, renderIntoDocument, Simulate } from "react-dom/test-utils";
 
-import Link from '../components/Link'
 
+import Link from '../components/Link'
 let container = null;
 beforeEach(() => {
-  // setup a DOM element as a render target
-  container = document.createElement("div");
-  document.body.appendChild(container);
+	// setup a DOM element as a render target
+	container = document.createElement("div");
+	document.body.appendChild(container);
 });
 
 afterEach(() => {
@@ -33,35 +33,37 @@ describe('Link',() => {
 		});
 	})
 	describe('that',() => {
-		const data = {
-				Age: 3,
-				'Encounter Date': "2021-05-05T00:00:00.000Z",
-				Gender: "M",
-				'Known Diabetic': "New",
-				Location: "Location 3",
-				name: "patient 51"
-		}
-		const spyOnClick = jest.fn().mockImplementationOnce(() => data);
-
-		it('responds to clicks', () => {
-			act(()=>{
+		it('responds to clicks', done => {
+			const spyOnClickLink = jest.fn(() =>(
+				{
+					status: 200,
+					rows:[
+						'name': 'patient 6',
+						'Encounter Date': '2021-05-05T00:00:00.000Z',
+						'Location': 'Location-3',
+						'New Diabetic': 'New',	
+						'Gender': 'F',
+						'Age': 3
+					],
+					message:'category details successfully fetched'
+				}
+			)); 
+			act( ()=>{
 				render(
 					<Link 
 						text={'1'}
 						location={'Location 3'}
 						criteria={'New Diabetic'} 
-						onClickLink = { spyOnClick }
+						onClickLink = { spyOnClickLink }
 					/>,
 					container
 				)
-				//container.querySelector("a").dispatchEvent(new MouseEvent("click", { bubbles: true }));
 				Simulate.click(container.querySelector('a'));
 			});
 			expect(container.querySelector('a')).toBeDefined()
 			expect(container.querySelector('a').getAttribute('href')).not.toBeNull()
-			//expect(container.querySelector('a').getAttribute('onclick')).not.toBeNull()
-			expect(spyOnClick).toHaveBeenCalledTimes(1)
+			console.log(done)
+			expect(spyOnClickLink).toBeCalled()
 		});
+	});
 });
-});
-
