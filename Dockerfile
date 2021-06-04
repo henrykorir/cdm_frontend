@@ -1,21 +1,17 @@
-# pull official base image from docker hub
-FROM node:13.12.0-alpine
-
-# set working directory
-WORKDIR /app
-
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
-
-# install app dependencies
-COPY package.json ./
-COPY package-lock.json ./
-COPY yarn.json ./
-RUN npm install 
-RUN npm install react-scripts@3.4.1 -g 
-
-# add app
-COPY . ./
-
-# start app
-CMD ["npm", "start"]
+# Base image
+FROM node
+# Make folder to put our files in
+RUN mkdir -p /usr/src/app
+RUN mkdir -p /usr/src/app/frontend
+# Set working directory so that all
+# subsequent command runs in this folder
+WORKDIR /usr/src/app/frontend
+# Copy package json and install dependencies
+COPY package*.json ./
+RUN npm install
+# Copy our app
+COPY . .
+# Expose port to access server
+EXPOSE 3000
+# Command to run our app
+CMD [ "npm", "start" ]
