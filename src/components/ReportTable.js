@@ -6,7 +6,7 @@ const ReportTable = ({ title, data, isCriteria, onClickLink }) => {
 		const headers = Object.keys(data[0]) 
 		return(
 			<div >
-				<h1 className=" w-full text-center text-white font-bold bg-black">{title}</h1>
+				<h1 className=" w-full text-center text-white font-bold bg-black py-4">{title}</h1>
 				<div style={{"overflow": "auto", "display":"block"}} >
 				<table className="table-auto text-left border-collapse w-full border">
 					<thead>
